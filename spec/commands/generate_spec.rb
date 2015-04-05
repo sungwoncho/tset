@@ -30,9 +30,22 @@ describe Tset::Commands::Generate do
           command.start
         end
 
-        it 'generates the model spec' do
+        it 'generates a model spec' do
           content = @root.join('spec/models/post_spec.rb').read
           expect(content).to match %(require 'spec_helper')
+        end
+      end
+
+      context 'with minitest' do
+        let(:framework) { 'minitest' }
+
+        before do
+          command.start
+        end
+
+        it 'generates a model test' do
+          content = @root.join('test/models/post_test.rb').read
+          expect(content).to match %(require 'test_helper')
         end
       end
     end

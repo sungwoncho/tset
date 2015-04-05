@@ -19,7 +19,7 @@ module Tset
         when 'rspec'
           cli.template(source.join('model_spec.rspec.tt'), target.join("spec/models/#{ @model_name }_spec.rb"))
         when 'minitest'
-          cli.template(source.join('model_test.minitest.tt'), target.join("spec/models/#{ @model_name }_test.rb"))
+          cli.template(source.join('model_test.minitest.tt'), target.join("test/models/#{ @model_name }_test.rb"))
         end
       end
 
