@@ -5,7 +5,7 @@ module Tset
   module Commands
     class Generate
 
-      GENERATOR_NAMESPACE = "Tset::Generator::%sTest".freeze
+      GENERATOR_NAMESPACE = "Tset::Generators::%sTest".freeze
 
       class Error < ::StandardError ; end
 

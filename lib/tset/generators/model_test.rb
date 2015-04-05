@@ -1,7 +1,7 @@
 require "tset/generators/abstract"
 
 module Tset
-  module Generator
+  module Generators
     class ModelTest < Abstract
 
       def initialize(command)

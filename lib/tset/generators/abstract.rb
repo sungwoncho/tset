@@ -1,7 +1,7 @@
 require "delegate"
 
 module Tset
-  module Generator
+  module Generators
     class Abstract < SimpleDelegator
       def initialize(command)
         super(command)
