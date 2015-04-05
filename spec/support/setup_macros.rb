@@ -14,4 +14,21 @@ module SetupMacros
   def chdir_back_to_root
     Dir.chdir(@pwd)
   end
+
+  def create_file(dir, name)
+    file = @root.join("app/#{dir}/#{name}.rb")
+    file.dirname.rmtree if file.dirname.exist?
+    file.dirname.mkpath
+    FileUtils.touch(file)
+  end
+
+  def erase_file_content(dir, name)
+    file = @root.join("app/#{dir}/#{name}.rb")
+    File.open(file, 'w') {}
+  end
+
+  def insert_into_file(dir, name, content)
+    file = @root.join("app/#{dir}/#{name}.rb")
+    File.write(file, content)
+  end
 end

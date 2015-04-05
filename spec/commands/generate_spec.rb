@@ -19,9 +19,7 @@ describe Tset::Commands::Generate do
 
     context 'when the model exists' do
       before do
-        post_model = @root.join('app/models/post.rb')
-        post_model.dirname.mkpath
-        FileUtils.touch(post_model)
+        create_file('models', name)
       end
 
       context 'with rspec' do
