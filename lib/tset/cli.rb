@@ -10,12 +10,12 @@ module Tset
     end
 
     desc 'generate', 'generates tests'
-    def generate(type = nil, name = nil)
+    def generate(type = nil, name = nil, framework = 'rspec')
       if options[:help] || (type.nil? && name.nil?)
         invoke :help, ['generate']
       else
         require "tset/commands/generate"
-        Tset::Commands::Generate.new(type, name).start
+        Tset::Commands::Generate.new(type, name, framework, self).start
       end
     end
   end

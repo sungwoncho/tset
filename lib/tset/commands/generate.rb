@@ -1,16 +1,24 @@
+require "pathname"
 require "active_support/inflector"
 
 module Tset
   module Commands
     class Generate
 
-      GENERATOR_NAMESPACE = "Tset::Generator::%s".freeze
+      GENERATOR_NAMESPACE = "Tset::Generator::%sTest".freeze
 
-      attr_reader :type, :name
+      class Error < ::StandardError ; end
 
-      def initialize(type, name)
+      attr_reader :type, :name, :framework, :cli, :source, :target
+
+      def initialize(type, name, framework, cli)
         @type = type
-        @name = name
+        @name = name.downcase
+        @framework = framework
+
+        @cli = cli
+        @source = Pathname.new(::File.dirname(__FILE__) + "/../generators/#{ @type }_test").realpath
+        @target = Pathname.pwd.realpath
       end
 
       def start
@@ -20,7 +28,7 @@ module Tset
       private
 
       def generator
-        require "tset/generators/#{ @type }"
+        require "tset/generators/#{ @type }_test"
         class_name = @type.classify
         Object.const_get(GENERATOR_NAMESPACE % class_name).new(self)
       end
