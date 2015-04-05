@@ -15,20 +15,20 @@ module SetupMacros
     Dir.chdir(@pwd)
   end
 
-  def create_file(dir, name)
-    file = @root.join("app/#{dir}/#{name}.rb")
+  def create_file(path)
+    file = @root.join(path)
     file.dirname.rmtree if file.dirname.exist?
     file.dirname.mkpath
     FileUtils.touch(file)
   end
 
-  def erase_file_content(dir, name)
-    file = @root.join("app/#{dir}/#{name}.rb")
+  def erase_file_content(path)
+    file = @root.join(path)
     File.open(file, 'w') {}
   end
 
-  def insert_into_file(dir, name, content)
-    file = @root.join("app/#{dir}/#{name}.rb")
+  def insert_into_file(path, content)
+    file = @root.join(path)
     File.write(file, content)
   end
 end

@@ -6,11 +6,11 @@ describe Tset::Analyzers::Model do
 
   before do
     set_up_testing_directory
-    create_file('models', name)
+    create_file("app/models/#{name}.rb")
   end
 
   before(:each) do
-    erase_file_content('models', name)
+    erase_file_content("app/models/#{name}.rb")
   end
 
   after do
@@ -29,7 +29,7 @@ describe Tset::Analyzers::Model do
   validates_presence_of :author
   validates :category, presence: true
 "
-    insert_into_file('models', name, content)
+    insert_into_file("app/models/#{name}.rb", content)
     result = analyzer.start
 
     expect(result).to match_array ['validates_presence_of :post', 'validates_presence_of :author', 'validates :category, presence: true',

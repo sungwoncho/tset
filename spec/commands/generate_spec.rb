@@ -19,7 +19,7 @@ describe Tset::Commands::Generate do
 
     context 'when the model exists' do
       before do
-        create_file('models', name)
+        create_file("app/models/#{name}.rb")
       end
 
       context 'with rspec' do
