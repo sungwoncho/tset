@@ -14,11 +14,35 @@ describe Tset::Translators::Rspec do
       end
     end
 
-    context 'validates :post, presence: true' do
-      let(:code) { 'validates :post, presence: true' }
+    context 'validates_uniqueness_of :title' do
+      let(:code) { 'validates_uniqueness_of :title' }
 
       it 'returns a proper test' do
-        expect(result).to eq "it { is.expected_to validate_presence_of(:post) }"
+        expect(result).to eq "it { is.expected_to validate_uniqueness_of(:title) }"
+      end
+    end
+
+    context 'validates_uniqueness_of :title' do
+      let(:code) { 'validates_uniqueness_of :title' }
+
+      it 'returns a proper test' do
+        expect(result).to eq "it { is.expected_to validate_uniqueness_of(:title) }"
+      end
+    end
+
+    context 'validates_length_of :body, maximum: 300' do
+      let(:code) { 'validates_length_of :body, maximum: 300' }
+
+      it 'returns a proper test' do
+        expect(result).to eq "it { is.expected_to ensure_length_of(:body).is_at_most(300) }"
+      end
+    end
+
+    context 'validates_length_of :body, minimum: 100' do
+      let(:code) { 'validates_length_of :body, minimum: 100' }
+
+      it 'returns a proper test' do
+        expect(result).to eq "it { is.expected_to ensure_length_of(:body).is_at_least(100) }"
       end
     end
 
@@ -43,6 +67,22 @@ describe Tset::Translators::Rspec do
 
       it 'returns a proper test' do
         expect(result).to eq "it { is.expected_to have_one(:tag) }"
+      end
+    end
+
+    context 'has_and_belongs_to_many :admins' do
+      let(:code) { 'has_and_belongs_to_many :admins' }
+
+      it 'returns a proper test' do
+        expect(result).to eq "it { is.expected_to have_and_belong_to_many(:admins) }"
+      end
+    end
+
+    context 'has_attached_file :profile_picture' do
+      let(:code) { 'has_attached_file :profile_picture' }
+
+      it 'returns a proper test' do
+        expect(result).to eq "it { is.expected_to have_attached_file(:profile_picture) }"
       end
     end
   end
