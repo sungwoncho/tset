@@ -1,6 +1,6 @@
 require "pathname"
 
-# Reads and parses the model file in the Rails application.
+# Reads the model file and breaks it down into an array of testables.
 #
 # @param name [String] the name of the model
 # @return [Array] the model codes for which tests can be generated.
@@ -28,10 +28,12 @@ module Tset
         content = _model_file.read
 
         testable_patterns.each do |pattern|
-          testable_lines << content.each_line.grep(pattern)
+          testable_lines << content.each_line.grep(pattern) do |matching_line|
+            Tset::Testable.new('model', matching_line.strip)
+          end
         end
 
-        testable_lines.flatten.map { |elm| elm.strip }
+        testable_lines.flatten
       end
 
       def _model_file

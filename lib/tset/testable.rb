@@ -9,7 +9,7 @@ module Tset
   #
   class Testable
 
-    TRANSLATOR_NAMESPACE = "Tset::Translator::%s"
+    TRANSLATOR_NAMESPACE = "Tset::Translators::%s"
 
     attr_reader :type, :code
 
@@ -18,7 +18,7 @@ module Tset
       @code = code
     end
 
-    def to_test(framework = 'Rspec')
+    def to_test(framework = 'rspec')
       translator(framework).start
     end
 

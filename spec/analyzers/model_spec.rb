@@ -32,7 +32,7 @@ describe Tset::Analyzers::Model do
     insert_into_file("app/models/#{name}.rb", content)
     result = analyzer.start
 
-    expect(result).to match_array ['validates_presence_of :post', 'validates_presence_of :author', 'validates :category, presence: true',
+    expect(result.map(&:code)).to match_array ['validates_presence_of :post', 'validates_presence_of :author', 'validates :category, presence: true',
                                     'belongs_to :author', 'has_one :tipjar', 'has_many :comments', 'has_many :likes']
 
   end

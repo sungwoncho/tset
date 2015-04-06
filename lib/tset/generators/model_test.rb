@@ -2,6 +2,12 @@ require "tset/generators/abstract"
 
 module Tset
   module Generators
+    #
+    # Generates blank test files in the application
+    # Uses analyzers, translators, and writers to insert appropriate tests into the files.
+    #
+    # @param command [Tset::Commands::Generate] An instance of generate command
+    #
     class ModelTest < Abstract
 
       def initialize(command)
