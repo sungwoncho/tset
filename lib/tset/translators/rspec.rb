@@ -7,18 +7,20 @@ module Tset
     #
     class Rspec < Abstract
 
-      attr_reader :testable
+      MODEL_TRANSLATION_RULE = {
+        %r(validates_presence_of (.*)) => "it { is.expected_to validate_presence_of(%s) }",
+        %r(validates (\S*), presence: true) => "it { is.expected_to validate_presence_of(%s) }",
+        %r(belongs_to (.*)) => "it { is.expected_to belong_to(%s) }",
+        %r(has_many (.*)) => "it { is.expected_to have_many(%s) }",
+        %r(has_one (.*)) => "it { is.expected_to have_one(%s) }"
+      }
+
+      attr_reader :testable, :testable_code, :testable_type
 
       def initialize(testable)
         @testable = testable
-      end
-
-      def testable_code
-        @testable_code ||= @testable.code
-      end
-
-      def testable_type
-        @testable_type ||= @testable.type
+        @testable_code = testable.code
+        @testable_type = testable.type
       end
 
       #
@@ -31,17 +33,8 @@ module Tset
       private
 
       def translate_model
-        case testable_code
-        when /validates_presence_of (.*)/
-          "it { is.expected_to validate_presence_of(#{$1}) }"
-        when /validates (\S*), presence: true/
-          "it { is.expected_to validate_presence_of(#{$1}) }"
-        when /belongs_to (.*)/
-          "it { is.expected_to belong_to(#{$1}) }"
-        when /has_many (.*)/
-          "it { is.expected_to have_many(#{$1}) }"
-        when /has_one (.*)/
-          "it { is.expected_to have_one(#{$1}) }"
+        MODEL_TRANSLATION_RULE.each do |pattern, outcome|
+          return outcome % $1 if testable_code =~ pattern
         end
       end
     end

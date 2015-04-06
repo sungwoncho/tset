@@ -41,7 +41,7 @@ module Tset
       end
 
       def testable_patterns
-        [/validates_presence_of/, /validates .*$/, /belongs_to/, /has_many/, /has_one/]
+        Tset::Translators::Rspec::MODEL_TRANSLATION_RULE.keys
       end
     end
   end
