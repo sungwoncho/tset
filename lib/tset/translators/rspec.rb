@@ -1,3 +1,5 @@
+require "tset/translators/abstract"
+
 module Tset
   module Translators
     #

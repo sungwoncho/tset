@@ -1,3 +1,5 @@
+require "tset/translators/rspec"
+require "tset/translators/minitest"
 require "active_support/inflector"
 
 module Tset

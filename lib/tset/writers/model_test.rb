@@ -1,3 +1,5 @@
+require "tset/writers/abstract"
+
 module Tset
   module Writers
     #

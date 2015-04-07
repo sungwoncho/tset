@@ -1,3 +1,6 @@
+require "tset/analyzers/abstract"
+require "tset/translators/rspec"
+require "tset/testable"
 require "pathname"
 
 # Reads the model file and breaks it down into an array of testables.

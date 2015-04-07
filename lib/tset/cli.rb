@@ -1,4 +1,5 @@
 require "thor"
+require "tset/commands/generate"
 
 module Tset
   class Cli < Thor

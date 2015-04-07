@@ -1,4 +1,6 @@
 require "tset/generators/abstract"
+require "tset/analyzers/model"
+require "tset/writers/model_test"
 
 module Tset
   module Generators
@@ -9,6 +11,8 @@ module Tset
     # @param command [Tset::Commands::Generate] An instance of generate command
     #
     class ModelTest < Abstract
+
+      attr_reader :model_name
 
       def initialize(command)
         super
@@ -27,6 +31,9 @@ module Tset
         when 'minitest'
           cli.template(source.join('model_test.minitest.tt'), target.join("test/models/#{ @model_name }_test.rb"))
         end
+
+        testables = Tset::Analyzers::Model.new(model_name).start
+        Tset::Writers::ModelTest.new(model_name, testables, framework).start!
       end
 
       private

@@ -1,5 +1,6 @@
 require "tset/version"
 
 module Tset
-  # Your code goes here...
+  require "tset/testable"
+  require "tset/cli"
 end
