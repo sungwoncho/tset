@@ -44,8 +44,13 @@ module Tset
       end
 
       def testable_patterns
-        Tset::Translators::Rspec::MODEL_TRANSLATION_RULE.keys
+        Tset::Translators::Rspec::MODEL_TRANSLATION_RULES.flat_map do |category|
+          category.values.flat_map do |rule|
+            rule.keys
+          end
+        end
       end
+
     end
   end
 end

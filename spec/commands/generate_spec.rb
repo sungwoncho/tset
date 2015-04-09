@@ -31,6 +31,7 @@ describe Tset::Commands::Generate do
         it 'generates a model spec' do
           content = @root.join('spec/models/post_spec.rb').read
           expect(content).to match %(require 'spec_helper')
+          expect(content).to match %(describe Post do)
         end
       end
 

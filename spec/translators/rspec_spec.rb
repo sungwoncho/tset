@@ -10,7 +10,7 @@ describe Tset::Translators::Rspec do
       let(:code) { 'validates_presence_of :post' }
 
       it 'returns a proper test' do
-        expect(result).to eq "it { is.expected_to validate_presence_of(:post) }"
+        expect(result.code).to eq "it { is.expected_to validate_presence_of(:post) }"
       end
     end
 
@@ -18,7 +18,7 @@ describe Tset::Translators::Rspec do
       let(:code) { 'validates_uniqueness_of :title' }
 
       it 'returns a proper test' do
-        expect(result).to eq "it { is.expected_to validate_uniqueness_of(:title) }"
+        expect(result.code).to eq "it { is.expected_to validate_uniqueness_of(:title) }"
       end
     end
 
@@ -26,7 +26,7 @@ describe Tset::Translators::Rspec do
       let(:code) { 'validates_uniqueness_of :title' }
 
       it 'returns a proper test' do
-        expect(result).to eq "it { is.expected_to validate_uniqueness_of(:title) }"
+        expect(result.code).to eq "it { is.expected_to validate_uniqueness_of(:title) }"
       end
     end
 
@@ -34,7 +34,7 @@ describe Tset::Translators::Rspec do
       let(:code) { 'validates_length_of :body, maximum: 300' }
 
       it 'returns a proper test' do
-        expect(result).to eq "it { is.expected_to ensure_length_of(:body).is_at_most(300) }"
+        expect(result.code).to eq "it { is.expected_to ensure_length_of(:body).is_at_most(300) }"
       end
     end
 
@@ -42,7 +42,7 @@ describe Tset::Translators::Rspec do
       let(:code) { 'validates_length_of :body, minimum: 100' }
 
       it 'returns a proper test' do
-        expect(result).to eq "it { is.expected_to ensure_length_of(:body).is_at_least(100) }"
+        expect(result.code).to eq "it { is.expected_to ensure_length_of(:body).is_at_least(100) }"
       end
     end
 
@@ -50,7 +50,7 @@ describe Tset::Translators::Rspec do
       let(:code) { 'belongs_to :author' }
 
       it 'returns a proper test' do
-        expect(result).to eq "it { is.expected_to belong_to(:author) }"
+        expect(result.code).to eq "it { is.expected_to belong_to(:author) }"
       end
     end
 
@@ -58,7 +58,7 @@ describe Tset::Translators::Rspec do
       let(:code) { 'has_many :comments' }
 
       it 'returns a proper test' do
-        expect(result).to eq "it { is.expected_to have_many(:comments) }"
+        expect(result.code).to eq "it { is.expected_to have_many(:comments) }"
       end
     end
 
@@ -66,7 +66,7 @@ describe Tset::Translators::Rspec do
       let(:code) { 'has_one :tag' }
 
       it 'returns a proper test' do
-        expect(result).to eq "it { is.expected_to have_one(:tag) }"
+        expect(result.code).to eq "it { is.expected_to have_one(:tag) }"
       end
     end
 
@@ -74,7 +74,7 @@ describe Tset::Translators::Rspec do
       let(:code) { 'has_and_belongs_to_many :admins' }
 
       it 'returns a proper test' do
-        expect(result).to eq "it { is.expected_to have_and_belong_to_many(:admins) }"
+        expect(result.code).to eq "it { is.expected_to have_and_belong_to_many(:admins) }"
       end
     end
 
@@ -82,7 +82,7 @@ describe Tset::Translators::Rspec do
       let(:code) { 'has_attached_file :profile_picture' }
 
       it 'returns a proper test' do
-        expect(result).to eq "it { is.expected_to have_attached_file(:profile_picture) }"
+        expect(result.code).to eq "it { is.expected_to have_attached_file(:profile_picture) }"
       end
     end
   end

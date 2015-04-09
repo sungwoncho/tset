@@ -8,10 +8,7 @@ describe Tset::Writers::ModelTest do
     set_up_testing_directory
     create_file('app/models/post.rb')
     create_file('spec/models/post_spec.rb')
-  end
-
-  before(:each) do
-    erase_file_content('spec/models/post_spec.rb')
+    insert_into_file('spec/models/post_spec.rb', "describe Post do")
   end
 
   after do
@@ -20,16 +17,13 @@ describe Tset::Writers::ModelTest do
 
   context 'rsepc' do
     let(:framework) { 'rspec' }
+    let(:testables) { [Tset::Testable.new('model', 'validates_presence_of :author')] }
 
-    context 'validates_presence_of' do
-      let(:testables) { [Tset::Testable.new('model', 'validates_presence_of :author')] }
+    it 'writes a test' do
+      writer.start!
 
-      it 'writes a test' do
-        writer.start!
-
-        content = @root.join('spec/models/post_spec.rb').read
-        expect(content).to eq %(it { is.expected_to validate_presence_of(:author) })
-      end
+      content = @root.join('spec/models/post_spec.rb').read
+      expect(content).to match %r(it { is.expected_to validate_presence_of\(:author\) })
     end
   end
 end
