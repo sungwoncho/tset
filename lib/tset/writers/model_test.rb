@@ -39,15 +39,25 @@ module Tset
 
       private
 
+      #
+      # Translates the testable into rspec and writes to rspec file
+      #
+      # @param testable [Tset::Testable]
+      #
       def write_rspec(testable)
         test = testable.to_test('rspec')
 
         file_contents = File.read(_rspec_file)
 
         describe(test.category) unless file_contents =~ /describe "#{test.category}" do/
-        it(test)
+        expectation(test)
       end
 
+      #
+      # Writes a describe block
+      #
+      # @param category [String] notion that is being described
+      #
       def describe(category)
         file_contents = File.read(_rspec_file)
         replacement = %Q(describe #{class_name} do
@@ -58,7 +68,12 @@ module Tset
         File.write(_rspec_file, file_contents)
       end
 
-      def it(test)
+      #
+      # Writes an expectation
+      #
+      # @param test [Tset::Tset]
+      #
+      def expectation(test)
         file_contents = File.read(_rspec_file)
         replacement = %Q(  describe "#{test.category}" do
     #{test.code})

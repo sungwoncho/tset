@@ -46,6 +46,11 @@ module Tset
 
       private
 
+      #
+      # Translates the testable from the object using MODEL_TRANSLATION_RULES
+      #
+      # @return [Tset::Test] an object containing corresponding test_code and category
+      #
       def translate_model
         MODEL_TRANSLATION_RULES.each do |rule|
           rule.values.first.each do |pattern, outcome|
@@ -56,18 +61,6 @@ module Tset
           end
         end
       end
-
-      #
-      # @param rules [Hash] a set of rules defined by key as patterns and values as matching tests
-      # @param category [String] category for Tset::Test used to contain tests in appropriate describe blocks
-      #
-      # def evaluate_rules(rules, category)
-      #   rules.each do |pattern, outcome|
-      #     if testable.code =~ pattern
-      #
-      #     end
-      #   end
-      # end
 
     end
   end
