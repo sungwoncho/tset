@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Tset::VERSION
   spec.authors       = ["Sung Won Cho"]
   spec.email         = ["mikeswcho@gmail.com"]
-  spec.summary       = %q{Generate test for your Rails controller, model.}
-  spec.description   = %q{Generate test for your controller, model.}
+  spec.summary       = %q{Generate tests for your Rails model.}
+  spec.description   = %q{Generate tests for your Rails model. Enter Development Driven Test.}
   spec.homepage      = "https://github.com/sungwoncho/tset"
   spec.license       = "MIT"
 
