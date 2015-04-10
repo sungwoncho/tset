@@ -1,4 +1,5 @@
 require "tset/translators/abstract"
+require "tset/test"
 
 module Tset
   module Translators
