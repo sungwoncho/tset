@@ -1,5 +1,7 @@
 # Tset
 
+[![Build Status](https://travis-ci.org/sungwoncho/tset.svg?branch=master)](https://travis-ci.org/sungwoncho/tset)
+
 Tset generates tests for your models in your Rails application.
 
 ## Why?
