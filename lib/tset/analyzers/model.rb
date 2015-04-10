@@ -6,7 +6,7 @@ require "pathname"
 # Reads the model file and breaks it down into an array of testables.
 #
 # @param name [String] the name of the model
-# @return [Array] the model codes for which tests can be generated.
+# @return [Array] Tset::Testable objects containing codes and test category.
 #
 module Tset
   module Analyzers

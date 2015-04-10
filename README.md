@@ -36,14 +36,28 @@ Tset will read your model and generate a test accordingly.
 
 By default, the Tset will use RSpec. Help us add MiniTest support by contributing.
 
-## Fact
+## Architecture
 
-* Tset is a test spelled backwards.
+There are four main objects at play: `Analyzer`, `Translator`, `Writer`, and `Generator`.
+
+* Analyzer reads your model file, and matches any lines that are deemed 'testable'. It returns an array of `Tset::Testable` objects.
+
+* Translator converts `Tset::Testable` objects into `Tset::Test` objects.
+
+* Writer writes the actual test in the spec file, for each `Tset::Test` objects.
+
+* Generator copies spec templates, groups all major components together, and responds to CLI.
+
+## Random
+
+Tset is a test spelled backwards.
 
 ## Contributing
 
+Tset is in beta. We need your help to improve it.
+
 ### TODO
 
-* Help us improve Tset by adding more test rules located in translators.
+* Add more translation rules for testables (located in `tset/translators/rspec.rb`).
 * Support MiniTest.
 * Support controllers.
