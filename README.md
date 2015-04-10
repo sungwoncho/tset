@@ -1,31 +1,49 @@
 # Tset
 
-TODO: Write a gem description
+Tset generates tests for your models in your Rails application.
+
+## Why?
+
+TDD is great, but sometimes you just want to write some codes.
+
+Enter 'Development Driven Test'. Tset enables you to just write codes and worry about tests later.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Run installation command.
 
-```ruby
-gem 'tset'
+```
+gem install tset
 ```
 
-And then execute:
+OR if you are using bundler,
 
-    $ bundle
+```ruby
+gem 'tset', group: :development
+```
 
-Or install it yourself as:
-
-    $ gem install tset
+Run `bundle`
 
 ## Usage
 
-TODO: Write usage instructions here
+In your application root directory, run the generator.
+
+```
+tset generate model YOUR_MODEL_NAME
+```
+
+Tset will read your model and generate a test accordingly.
+
+By default, the Tset will use RSpec. Help us add MiniTest support by contributing.
+
+## Fact
+
+* Tset is a test spelled backwards.
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/tset/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+### TODO
+
+* Help us improve Tset by adding more test rules located in translators.
+* Support MiniTest.
+* Support controllers.
