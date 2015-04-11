@@ -18,13 +18,17 @@ Run installation command.
 gem install tset
 ```
 
-OR if you are using bundler,
+---
+
+*OR* if you want to use bundler,
 
 ```ruby
 gem 'tset', group: :development
 ```
 
-Run `bundle`
+Run `bundle install`.
+
+Append `bundle exec` when you run tset commands.
 
 ## Usage
 
@@ -37,6 +41,12 @@ tset generate model YOUR_MODEL_NAME
 Tset will read your model and generate a test accordingly.
 
 By default, the Tset will use RSpec. Help us add MiniTest support by contributing.
+
+## Dependency
+
+You need [shoulda-matchers](https://github.com/thoughtbot/shoulda-matchers) to run some of tests Tset generates for you.
+
+It lets you use matchers such as `validate_presence_of(:name)` in your spec.
 
 ## Architecture
 
