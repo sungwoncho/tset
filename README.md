@@ -40,7 +40,35 @@ tset generate model YOUR_MODEL_NAME
 
 Tset will read your model and generate a test accordingly.
 
-By default, the Tset will use RSpec. Help us add MiniTest support by contributing.
+If your model looks like the following,
+
+```ruby
+class Post < ActiveRecord::Base
+  validates_presence_of :author
+  validates_length_of :author, maximum: 30
+  belongs_to :author
+end
+```
+
+Tset will generate a spec file such as:
+
+```ruby
+require 'spec_helper'
+
+describe Post do
+
+  describe "associations" do
+    it { is.expected_to belong_to(:author) }
+  end
+
+  describe "validations" do
+    it { is.expected_to ensure_length_of(:author).is_at_most(30) }
+    it { is.expected_to validate_presence_of(:author) }
+  end
+end
+```
+
+By default, the Tset will use RSpec. Help us add Minitest support by contributing.
 
 ## Dependency
 
@@ -71,5 +99,5 @@ Tset is in beta. We need your help to improve it.
 ### TODO
 
 * Add more translation rules for testables (located in `tset/translators/rspec.rb`).
-* Support MiniTest.
+* Support Minitest.
 * Support controllers.
